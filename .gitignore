@@ -1,0 +1,108 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# ===========================================
+# DEPENDENCIES
+# ===========================================
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ===========================================
+# TESTING & COVERAGE
+# ===========================================
+/coverage
+*.lcov
+.nyc_output
+
+# ===========================================
+# NEXT.JS
+# ===========================================
+/.next/
+/out/
+
+# ===========================================
+# BUILD & PRODUCTION
+# ===========================================
+/build
+/dist
+*.tsbuildinfo
+next-env.d.ts
+
+# ===========================================
+# ENVIRONMENT & SECRETS (CRITICAL)
+# ===========================================
+.env
+.env.*
+!.env.exemple
+.env.local
+.env.development
+.env.production
+.env.test
+
+# ===========================================
+# DATABASE & PRISMA
+# ===========================================
+/lib/generated/prisma
+prisma/*.db
+prisma/*.db-journal
+prisma/sandbox.db
+*.sqlite
+*.sqlite3
+
+# ===========================================
+# UPLOADS & USER DATA (PRIVACY)
+# ===========================================
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# ===========================================
+# LOGS & DEBUG
+# ===========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+logs/
+
+# ===========================================
+# OS & EDITOR FILES
+# ===========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# ===========================================
+# VERCEL & DEPLOYMENT
+# ===========================================
+.vercel
+
+# ===========================================
+# SENTRY
+# ===========================================
+.env.sentry-build-plugin
+
+# ===========================================
+# MISC
+# ===========================================
+*.pem
+*.key
+*.cert
+*.crt
