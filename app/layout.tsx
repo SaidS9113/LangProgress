@@ -29,14 +29,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: process.env.APP_URL || "https://langprogress.vercel.app",
+    url: process.env.APP_URL || "https://langprogress-s.vercel.app",
     siteName: "LangProgress",
     title: "LangProgress – Apprenez les langues efficacement",
     description:
       "Une plateforme moderne d'apprentissage de langues avec des cours progressifs, des quiz interactifs et un suivi personnalisé.",
     images: [
       {
-        url: `${process.env.APP_URL || "https://langprogress.vercel.app"}/og-image.jpg`,
+        url: `${process.env.APP_URL || "https://langprogress-s.vercel.app"}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "LangProgress - Plateforme d'apprentissage de langues",
@@ -48,15 +48,15 @@ export const metadata: Metadata = {
     title: "LangProgress – Plateforme d'apprentissage de langues",
     description:
       "Apprenez les langues efficacement avec des cours progressifs, quiz et suivi personnalisé.",
-    images: [`${process.env.APP_URL || "https://langprogress.vercel.app"}/og-image.jpg`],
+    images: [`${process.env.APP_URL || "https://langprogress-s.vercel.app"}/og-image.jpg`],
   },
   alternates: {
-    canonical: process.env.APP_URL || "https://langprogress.vercel.app",
+    canonical: process.env.APP_URL || "https://langprogress-s.vercel.app",
   },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION || "",
   },
-  metadataBase: new URL(process.env.APP_URL || "https://langprogress.vercel.app"),
+  metadataBase: new URL(process.env.APP_URL || "https://langprogress-s.vercel.app"),
 };
 
 export default function RootLayout({
@@ -103,8 +103,8 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "Organization",
                 "name": "LangProgress",
-                "url": process.env.APP_URL || "https://langprogress.vercel.app",
-                "logo": `${process.env.APP_URL || "https://langprogress.vercel.app"}/icon-512.png`,
+                "url": process.env.APP_URL || "https://langprogress-s.vercel.app",
+                "logo": `${process.env.APP_URL || "https://langprogress-s.vercel.app"}/icon-512.png`,
                 "description": "Plateforme d'apprentissage de langues avec cours progressifs et suivi personnalisé.",
                 "sameAs": [
                   process.env.LINKEDIN_URL || "https://linkedin.com/in/soidroudine-said",
@@ -125,10 +125,10 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 "name": "LangProgress",
-                "url": process.env.APP_URL || "https://langprogress.vercel.app",
+                "url": process.env.APP_URL || "https://langprogress-s.vercel.app",
                 "potentialAction": {
                   "@type": "SearchAction",
-                  "target": `${process.env.APP_URL || "https://langprogress.vercel.app"}/recherche?q={search_term_string}`,
+                  "target": `${process.env.APP_URL || "https://langprogress-s.vercel.app"}/recherche?q={search_term_string}`,
                   "query-input": "required name=search_term_string",
                 },
               },
@@ -137,7 +137,7 @@ export default function RootLayout({
                 "@type": "WebApplication",
                 "name": "LangProgress",
                 "description": "Plateforme e-learning pour l'apprentissage de langues. Cours progressifs, quiz interactifs, vidéos explicatives et suivi de progression en temps réel.",
-                "url": process.env.APP_URL || "https://langprogress.vercel.app",
+                "url": process.env.APP_URL || "https://langprogress-s.vercel.app",
                 "applicationCategory": "EducationalApplication",
                 "operatingSystem": "Web",
                 "offers": {

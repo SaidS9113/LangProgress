@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.APP_URL || 'https://langprogress.vercel.app';
+  const baseUrl = process.env.APP_URL || 'https://langprogress-s.vercel.app';
   const currentDate = new Date().toISOString();
 
   // Pages publiques principales

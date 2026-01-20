@@ -119,7 +119,7 @@ export async function sendWelcomeEmail(email: string, username?: string) {
       from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
       to: email,
       subject: 'Bienvenue sur LangProgress !',
-      html: getEmailTemplate(content, 'Commencer maintenant', process.env.APP_URL || 'https://langprogress.vercel.app'),
+      html: getEmailTemplate(content, 'Commencer maintenant', process.env.APP_URL || 'https://langprogress-s.vercel.app'),
     });
 
     console.log('[EMAIL] Email de bienvenue envoye a:', email);
@@ -140,7 +140,7 @@ export async function sendPasswordResetEmail(email: string, resetToken: string) 
     return { success: true, simulated: true };
   }
 
-  const resetUrl = `${process.env.APP_URL || 'https://langprogress.vercel.app'}/reset-password?token=${resetToken}`;
+  const resetUrl = `${process.env.APP_URL || 'https://langprogress-s.vercel.app'}/reset-password?token=${resetToken}`;
   
   const content = `
     <h2 style="margin: 0 0 20px; color: #333; font-size: 24px;">Réinitialisation de mot de passe</h2>
@@ -213,7 +213,7 @@ export async function sendPaymentConfirmationEmail(email: string, planName: stri
       from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
       to: email,
       subject: 'Confirmation de paiement - LangProgress',
-      html: getEmailTemplate(content, 'Accéder à mon compte', process.env.APP_URL || 'https://langprogress.vercel.app'),
+      html: getEmailTemplate(content, 'Accéder à mon compte', process.env.APP_URL || 'https://langprogress-s.vercel.app'),
     });
 
     console.log('[EMAIL] Email paiement envoye a:', email);
@@ -257,7 +257,7 @@ export async function sendHomeworkNotificationEmail(email: string, homeworkTitle
       from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
       to: email,
       subject: `Nouveau devoir : ${homeworkTitle} - LangProgress`,
-      html: getEmailTemplate(content, 'Voir le devoir', `${process.env.APP_URL || 'https://langprogress.vercel.app'}/homework`),
+      html: getEmailTemplate(content, 'Voir le devoir', `${process.env.APP_URL || 'https://langprogress-s.vercel.app'}/homework`),
     });
 
     console.log('[EMAIL] Email devoir envoye a:', email);
@@ -547,7 +547,7 @@ export async function sendChapterHomeworkEmail(email: string, chapterNumber: num
       from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
       to: email,
       subject: `Chapitre ${chapterNumber} terminé - Nouveau devoir disponible`,
-      html: getEmailTemplate(content, 'Voir mes devoirs', `${process.env.APP_URL || 'https://langprogress.vercel.app'}/homework`),
+      html: getEmailTemplate(content, 'Voir mes devoirs', `${process.env.APP_URL || 'https://langprogress-s.vercel.app'}/homework`),
     });
 
     console.log('[EMAIL] Email devoir chapitre envoye a:', email);
