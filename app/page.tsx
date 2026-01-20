@@ -321,7 +321,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen bg-white text-gray-900 w-full">
       <header className="hidden md:block fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
           <div className="flex justify-between items-center h-20">
@@ -421,9 +421,9 @@ export default function Home() {
         )}
       </header>
 
-      <main className="overflow-x-hidden w-full">
-        <div className="main-container overflow-x-hidden">
-          <section id="accueil" className="pt-32 md:pt-40 pb-20 bg-gradient-to-b from-sky-200/30 to-white overflow-hidden">
+      <main className="w-full">
+        <div className="main-container">
+          <section id="accueil" className="pt-32 md:pt-40 pb-20 bg-gradient-to-b from-sky-200/30 to-white">
             <div className="section-container px-4 sm:px-6">
               <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
               <motion.div
@@ -742,7 +742,7 @@ export default function Home() {
                           whileTap={{ scale: 0.95 }}
                         >
                           <Linkedin className="w-5 h-5" />
-                          Me suivre sur LinkedIn
+                          Je m'abonne
                         </motion.a>
                         <motion.a
                           href="https://github.com/SaidS9113"
