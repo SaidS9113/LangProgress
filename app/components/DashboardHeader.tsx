@@ -85,14 +85,14 @@ export default function DashboardHeader({
         if (savedModule === 'B' || savedModule === 'A') {
             setSelectedModule(savedModule);
         }
-        
+
         const handleStorageChange = () => {
             const updatedModule = localStorage.getItem('selectedDashboardModule');
             if (updatedModule === 'B' || updatedModule === 'A') {
                 setSelectedModule(updatedModule);
             }
         };
-        
+
         window.addEventListener('storage', handleStorageChange);
         return () => window.removeEventListener('storage', handleStorageChange);
     }, []);
@@ -145,6 +145,12 @@ export default function DashboardHeader({
     const handleEditProfile = async (e: React.FormEvent) => {
         e.preventDefault();
         setEditError('');
+
+        // Bloquer la modification pour le compte démo
+        if (user?.email?.toLowerCase() === 'demo@sandbox.com') {
+            setEditError('Le compte démo ne peut pas être modifié. Créez votre propre compte pour personnaliser votre profil.');
+            return;
+        }
 
         const usernameIsChanged = editForm.username !== user?.username;
 
@@ -285,10 +291,10 @@ export default function DashboardHeader({
                         <Link
                             href={user.subscriptionPlan !== 'COACHING' ? "#" : "/coaching"}
                             className={`${user.subscriptionPlan !== 'COACHING'
-                                    ? "text-gray-400 opacity-60 cursor-not-allowed"
-                                    : pathname === "/coaching"
-                                        ? "text-gray-900 font-medium border-b-2 border-blue-800"
-                                        : "text-gray-500 hover:text-gray-900"
+                                ? "text-gray-400 opacity-60 cursor-not-allowed"
+                                : pathname === "/coaching"
+                                    ? "text-gray-900 font-medium border-b-2 border-blue-800"
+                                    : "text-gray-500 hover:text-gray-900"
                                 }`}
                             onClick={(e) => {
                                 if (user.subscriptionPlan !== 'COACHING') {
@@ -303,8 +309,8 @@ export default function DashboardHeader({
                         <Link
                             href={devoirsUrl}
                             className={`${pathname === "/homework" || pathname === "/homework-B"
-                                    ? "text-gray-900 font-medium border-b-2 border-blue-800"
-                                    : "text-gray-500 hover:text-gray-900"
+                                ? "text-gray-900 font-medium border-b-2 border-blue-800"
+                                : "text-gray-500 hover:text-gray-900"
                                 }`}
 
                         >
@@ -348,16 +354,16 @@ export default function DashboardHeader({
                                 </div>
 
                                 <nav className="flex flex-col p-4 space-y-1">
-                                    <Link 
-                                        href="/dashboard" 
-                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+                                    <Link
+                                        href="/dashboard"
+                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Accueil
                                     </Link>
                                     {selectedModule === 'B' ? (
-                                        <button 
-                                            className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors text-left" 
+                                        <button
+                                            className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors text-left"
                                             onClick={() => {
                                                 setShowModuleBCoursModal(true);
                                                 setMobileMenuOpen(false);
@@ -366,9 +372,9 @@ export default function DashboardHeader({
                                             Cours
                                         </button>
                                     ) : (
-                                        <Link 
-                                            href={coursUrl} 
-                                            className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+                                        <Link
+                                            href={coursUrl}
+                                            className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                             onClick={() => {
                                                 localStorage.setItem('autoOpenCourseSidebar', 'true');
                                                 localStorage.setItem('sandbox_study_time_start', Date.now().toString());
@@ -378,47 +384,47 @@ export default function DashboardHeader({
                                             Cours
                                         </Link>
                                     )}
-                                    <Link 
-                                        href={user.subscriptionPlan !== 'COACHING' ? '#' : '/coaching'} 
-                                        className={`flex items-center px-4 py-3 font-medium rounded-lg transition-colors ${user.subscriptionPlan !== 'COACHING' ? 'text-gray-400 opacity-60 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'}`} 
+                                    <Link
+                                        href={user.subscriptionPlan !== 'COACHING' ? '#' : '/coaching'}
+                                        className={`flex items-center px-4 py-3 font-medium rounded-lg transition-colors ${user.subscriptionPlan !== 'COACHING' ? 'text-gray-400 opacity-60 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'}`}
                                         onClick={e => { if (user.subscriptionPlan !== 'COACHING') { e.preventDefault(); handleRestrictedClick('Accompagnement'); setMobileMenuOpen(false); } else { setMobileMenuOpen(false); } }}
                                     >
                                         Coaching
                                     </Link>
-                                    <Link 
-                                        href={devoirsUrl} 
-                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+                                    <Link
+                                        href={devoirsUrl}
+                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Devoirs
                                     </Link>
-                                    <Link 
-                                        href="/guide" 
-                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+                                    <Link
+                                        href="/guide"
+                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Notice
                                     </Link>
-                                    <Link 
-                                        href="/tips" 
-                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+                                    <Link
+                                        href="/tips"
+                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Conseil
                                     </Link>
-                                    <Link 
-                                        href="/levels" 
-                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+                                    <Link
+                                        href="/levels"
+                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Niveaux
                                     </Link>
-                                    
+
                                     <div className="my-2 border-t border-gray-200"></div>
-                                    
-                                    <Link 
-                                        href="/subscription" 
-                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors" 
+
+                                    <Link
+                                        href="/subscription"
+                                        className="flex items-center px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Abonnement
@@ -536,21 +542,19 @@ export default function DashboardHeader({
                                     <div className="flex space-x-2 mb-4">
                                         <button
                                             onClick={() => setNotificationTab('A')}
-                                            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
-                                                notificationTab === 'A'
+                                            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${notificationTab === 'A'
                                                     ? 'bg-blue-100 text-blue-800 border border-blue-200'
                                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                            }`}
+                                                }`}
                                         >
                                             A ({getACount()})
                                         </button>
                                         <button
                                             onClick={() => setNotificationTab('B')}
-                                            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
-                                                notificationTab === 'B'
+                                            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${notificationTab === 'B'
                                                     ? 'bg-purple-100 text-purple-800 border border-purple-200'
                                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                            }`}
+                                                }`}
                                         >
                                             B ({getBCount()})
                                         </button>
@@ -801,19 +805,12 @@ export default function DashboardHeader({
                                         Supprimer mon compte
                                     </h4>
                                     <p className="text-sm text-red-800">
-                                        Pour supprimer votre compte, contactez le support :
+                                        Pour supprimer votre compte, contactez le support
                                     </p>
                                     <div className="mt-2 text-sm text-red-700">
-                                        <p>
-                                            ?? <a href="mailto:exemple.mail@gmail.com" className="font-semibold hover:underline">
-                                                exemple.mail@gmail.com
-                                            </a>
-                                        </p>
-                                        <p>?? Ou utilisez le formulaire de contact ci-dessus.</p>
                                     </div>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

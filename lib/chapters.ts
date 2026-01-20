@@ -189,13 +189,8 @@ export function generateAllStaticParams(): { chapitres: string; page: string }[]
       });
     });
     
-    // Add quiz page if chapter has quiz
-    if (chapter.quiz && chapter.quiz.length > 0) {
-      params.push({
-        chapitres: chapter.chapterNumber.toString(),
-        page: 'quiz',
-      });
-    }
+    // Note: Quiz pages are handled by /chapters/[chapitres]/quiz/page.tsx
+    // so we don't include them here
   });
   
   return params;

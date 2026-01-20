@@ -60,6 +60,12 @@ async function getComponent(chapitres: string, page: string) {
   const chapNum = parseInt(chapitres, 10);
   const lessonNum = parseInt(page, 10);
 
+  // Vérifier que les paramètres sont des nombres valides
+  if (isNaN(chapNum) || isNaN(lessonNum)) {
+    console.error(`Paramètres invalides: chapitres=${chapitres}, page=${page}`);
+    return () => <NotFoundPage chapNum={chapNum || 0} lessonNum={lessonNum || 0} lessonInfo={null} />;
+  }
+
   try {
     // Import Lecon component: chapter1/Lecon1.tsx, chapter1/Lecon2.tsx, etc.
     const module = await import(
