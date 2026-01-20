@@ -8,8 +8,8 @@ import VisitorCounter from './components/VisitorCounter';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.4, ease: "easeOut" }
   }
@@ -17,8 +17,8 @@ const fadeInUp: Variants = {
 
 const fadeInLeft: Variants = {
   hidden: { opacity: 0, x: -40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     transition: { duration: 0.4, ease: "easeOut" }
   }
@@ -26,8 +26,8 @@ const fadeInLeft: Variants = {
 
 const fadeInRight: Variants = {
   hidden: { opacity: 0, x: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     transition: { duration: 0.4, ease: "easeOut" }
   }
@@ -35,8 +35,8 @@ const fadeInRight: Variants = {
 
 const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
     transition: { duration: 0.3, ease: "easeOut" }
   }
@@ -68,11 +68,11 @@ function AnimatedText({ text, className }: { text: string; className?: string })
           className="inline-block mr-[0.25em]"
           variants={{
             hidden: { opacity: 0, y: 15 },
-            visible: { 
-              opacity: 1, 
+            visible: {
+              opacity: 1,
               y: 0,
-              transition: { 
-                duration: 0.3, 
+              transition: {
+                duration: 0.3,
                 delay: index * 0.03
               }
             }
@@ -89,10 +89,10 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; s
   const [count, setCount] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
-  
+
   const numericValue = parseFloat(value.replace(/[^0-9.]/g, ''));
   const hasDecimal = value.includes('.');
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -105,22 +105,22 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; s
       },
       { threshold: 0.5 }
     );
-    
+
     if (ref.current) {
       observer.observe(ref.current);
     }
-    
+
     return () => observer.disconnect();
   }, []);
-  
+
   useEffect(() => {
     if (!isInView) return;
-    
+
     const duration = 1500;
     const steps = 60;
     const increment = numericValue / steps;
     let current = 0;
-    
+
     const timer = setInterval(() => {
       current += increment;
       if (current >= numericValue) {
@@ -130,13 +130,13 @@ function AnimatedCounter({ value, suffix = '', prefix = '' }: { value: string; s
         setCount(current);
       }
     }, duration / steps);
-    
+
     return () => clearInterval(timer);
   }, [isInView, numericValue]);
-  
+
   const displayValue = hasDecimal ? count.toFixed(1) : Math.floor(count);
   const suffixFromValue = value.replace(/[0-9.]/g, '');
-  
+
   return (
     <motion.p
       ref={ref}
@@ -158,7 +158,7 @@ function FAQItem({ question, answer, isOpen, onClick }: {
   onClick: () => void;
 }) {
   return (
-    <motion.div 
+    <motion.div
       className="border border-gray-200 rounded-2xl overflow-hidden bg-white mb-4"
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -180,7 +180,7 @@ function FAQItem({ question, answer, isOpen, onClick }: {
       </button>
       <motion.div
         initial={false}
-        animate={{ 
+        animate={{
           height: isOpen ? "auto" : 0,
           opacity: isOpen ? 1 : 0
         }}
@@ -379,7 +379,7 @@ export default function Home() {
             </span>
           </Link>
 
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="w-10 h-10 flex items-center justify-center text-white hover:bg-white/10 rounded-xl transition-colors"
           >
@@ -426,181 +426,181 @@ export default function Home() {
           <section id="accueil" className="pt-32 md:pt-40 pb-20 bg-gradient-to-b from-sky-200/30 to-white">
             <div className="section-container px-4 sm:px-6">
               <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={staggerContainer}
-                className="lg:w-1/2 text-center lg:text-left"
-              >
-                <motion.div 
-                  variants={fadeInUp}
-                  className="inline-flex items-center gap-2 bg-amber-100 rounded-full px-4 py-2 mb-4"
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={staggerContainer}
+                  className="lg:w-1/2 text-center lg:text-left"
                 >
-                  <Code className="w-4 h-4 text-amber-600" />
-                  <span className="text-sm font-semibold text-amber-600">LangProgress - Démo E-Learning</span>
-                </motion.div>
-
-               
-
-                <motion.h1 
-                  variants={fadeInUp}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight"
-                >
-                  <AnimatedText text="Apprenez n'importe quelle" />
-                  <motion.span 
-                    className="text-sky-500 block"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.3 }}
+                  <motion.div
+                    variants={fadeInUp}
+                    className="inline-flex items-center gap-2 bg-amber-100 rounded-full px-4 py-2 mb-4"
                   >
-                    langue facilement
-                  </motion.span>
-                </motion.h1>
+                    <Code className="w-4 h-4 text-amber-600" />
+                    <span className="text-sm font-semibold text-amber-600">LangProgress - Démo E-Learning</span>
+                  </motion.div>
 
-                {/* Compteur visiteurs visible uniquement sur mobile */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="flex justify-center lg:hidden mb-6"
-                >
-                  <VisitorCounter />
+
+
+                  <motion.h1
+                    variants={fadeInUp}
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight"
+                  >
+                    <AnimatedText text="Apprenez n'importe quelle" />
+                    <motion.span
+                      className="text-sky-500 block"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.3 }}
+                    >
+                      langue facilement
+                    </motion.span>
+                  </motion.h1>
+
+                  {/* Compteur visiteurs visible uniquement sur mobile */}
+                  <motion.div
+                    variants={fadeInUp}
+                    className="flex justify-center lg:hidden mb-6"
+                  >
+                    <VisitorCounter />
+                  </motion.div>
+
+                  <motion.p
+                    variants={fadeInUp}
+                    className="text-base sm:text-lg text-gray-500 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+                  >
+                    LangProgress est une plateforme e-learning automatisée d'apprentissage de langues.
+                    Testez la Démo de LangProgress !
+                  </motion.p>
+
+                  <motion.div
+                    variants={fadeInUp}
+                    className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full"
+                  >
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                      <button
+                        onClick={() => scrollToSection('faq')}
+                        className="w-full sm:w-auto bg-[#0A66C2] hover:bg-[#004182] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-2"
+                      >
+                        <HelpCircle className="w-4 h-4" />
+                        En savoir plus
+                      </button>
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                      <Link
+                        href="/login"
+                        className="w-full sm:w-auto bg-sky-500 hover:bg-sky-600 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold transition-all flex items-center justify-center gap-2"
+                      >
+                        <Play className="w-4 h-4" />
+                        Essayer la démo
+                      </Link>
+                    </motion.div>
+                  </motion.div>
                 </motion.div>
 
-                <motion.p 
-                  variants={fadeInUp}
-                  className="text-base sm:text-lg text-gray-500 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="lg:w-1/2 w-full"
                 >
-                  LangProgress est une plateforme e-learning automatisée d'apprentissage de langues. 
-                  Testez la Démo de LangProgress !
-                </motion.p>
-
-                <motion.div 
-                  variants={fadeInUp}
-                  className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full"
-                >
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-                    <button
-                      onClick={() => scrollToSection('faq')}
-                      className="w-full sm:w-auto bg-[#0A66C2] hover:bg-[#004182] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold transition-all shadow-lg shadow-blue-200 flex items-center justify-center gap-2"
-                    >
-                      <HelpCircle className="w-4 h-4" />
-                      En savoir plus
-                    </button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-                    <Link
-                      href="/login"
-                      className="w-full sm:w-auto bg-sky-500 hover:bg-sky-600 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold transition-all flex items-center justify-center gap-2"
-                    >
-                      <Play className="w-4 h-4" />
-                      Essayer la démo
-                    </Link>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="lg:w-1/2 w-full"
-              >
-                <div className="relative mx-auto max-w-md lg:max-w-none">
-                  <div className="absolute -top-4 -left-4 w-24 h-24 bg-sky-200 rounded-full blur-3xl opacity-60 hidden sm:block" />
-                  <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-sky-300 rounded-full blur-3xl opacity-40 hidden sm:block" />
-                  <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-5 sm:p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-sky-100 rounded-2xl flex items-center justify-center">
-                        <TrendingUp className="w-7 h-7 text-sky-500" />
+                  <div className="relative mx-auto max-w-md lg:max-w-none">
+                    <div className="absolute -top-4 -left-4 w-24 h-24 bg-sky-200 rounded-full blur-3xl opacity-60 hidden sm:block" />
+                    <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-sky-300 rounded-full blur-3xl opacity-40 hidden sm:block" />
+                    <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-5 sm:p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="w-14 h-14 bg-sky-100 rounded-2xl flex items-center justify-center">
+                          <TrendingUp className="w-7 h-7 text-sky-500" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-gray-900 text-lg">Votre progression</h3>
+                          <p className="text-gray-500">Chapitre 3 - Vocabulaire</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-bold text-gray-900 text-lg">Votre progression</h3>
-                        <p className="text-gray-500">Chapitre 3 - Vocabulaire</p>
+                      <div className="bg-gray-50 rounded-2xl p-5 mb-6">
+                        <div className="flex justify-between mb-3">
+                          <span className="text-gray-500">Progression globale</span>
+                          <span className="font-bold text-sky-500">68%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                          <motion.div
+                            className="bg-gradient-to-r from-sky-500 to-sky-400 h-3 rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: "68%" }}
+                            transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="bg-gray-50 rounded-2xl p-5 mb-6">
-                      <div className="flex justify-between mb-3">
-                        <span className="text-gray-500">Progression globale</span>
-                        <span className="font-bold text-sky-500">68%</span>
+                      <div className="grid grid-cols-3 gap-4">
+                        {[
+                          { icon: BookOpen, color: 'sky', label: 'Leçons' },
+                          { icon: Brain, color: 'green', label: 'Quiz' },
+                          { icon: Play, color: 'indigo', label: 'Vidéos' }
+                        ].map((item, index) => (
+                          <motion.div
+                            key={item.label}
+                            className={`bg-${item.color}-50 rounded-xl p-4 text-center`}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
+                            whileHover={{ scale: 1.03, y: -3 }}
+                          >
+                            <item.icon className={`w-6 h-6 text-${item.color}-500 mx-auto mb-2`} />
+                            <span className="text-xs text-gray-600 font-medium">{item.label}</span>
+                          </motion.div>
+                        ))}
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                        <motion.div 
-                          className="bg-gradient-to-r from-sky-500 to-sky-400 h-3 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: "68%" }}
-                          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      {[
-                        { icon: BookOpen, color: 'sky', label: 'Leçons' },
-                        { icon: Brain, color: 'green', label: 'Quiz' },
-                        { icon: Play, color: 'indigo', label: 'Vidéos' }
-                      ].map((item, index) => (
-                        <motion.div 
-                          key={item.label}
-                          className={`bg-${item.color}-50 rounded-xl p-4 text-center`}
-                          initial={{ opacity: 0, y: 15 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
-                          whileHover={{ scale: 1.03, y: -3 }}
-                        >
-                          <item.icon className={`w-6 h-6 text-${item.color}-500 mx-auto mb-2`} />
-                          <span className="text-xs text-gray-600 font-medium">{item.label}</span>
-                        </motion.div>
-                      ))}
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               </div>
             </div>
           </section>
 
           <section className="py-16 border-t border-gray-100 overflow-hidden">
             <div className="section-container px-4 sm:px-6">
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-3 gap-4 sm:gap-8 md:gap-16 text-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
                 variants={staggerContainer}
               >
-              <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }}>
-                <AnimatedCounter value="15" prefix="+" />
-                <motion.p 
-                  className="text-gray-500"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ delay: 0.1, duration: 0.3 }}
-                >
-                  Composants React
-                </motion.p>
-              </motion.div>
-              <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }}>
-                <AnimatedCounter value="100%" />
-                <motion.p 
-                  className="text-gray-500"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ delay: 0.15, duration: 0.3 }}
-                >
-                  TypeScript
-                </motion.p>
-              </motion.div>
-              <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }}>
-                <AnimatedCounter value="5" prefix="+" />
-                <motion.p 
-                  className="text-gray-500"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ delay: 0.2, duration: 0.3 }}
-                >
-                  Chapitres
-                </motion.p>
+                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }}>
+                  <AnimatedCounter value="15" prefix="+" />
+                  <motion.p
+                    className="text-gray-500"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                  >
+                    Composants React
+                  </motion.p>
+                </motion.div>
+                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }}>
+                  <AnimatedCounter value="100%" />
+                  <motion.p
+                    className="text-gray-500"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ delay: 0.15, duration: 0.3 }}
+                  >
+                    TypeScript
+                  </motion.p>
+                </motion.div>
+                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }}>
+                  <AnimatedCounter value="5" prefix="+" />
+                  <motion.p
+                    className="text-gray-500"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                  >
+                    Chapitres
+                  </motion.p>
                 </motion.div>
               </motion.div>
             </div>
@@ -616,11 +616,11 @@ export default function Home() {
                     viewport={{ once: false, amount: 0.3 }}
                     variants={fadeInLeft}
                   >
-                    <motion.div 
+                    <motion.div
                       className="flex items-center gap-3 mb-6"
                       variants={fadeInUp}
                     >
-                      <motion.div 
+                      <motion.div
                         className="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center"
                         whileHover={{ rotate: 15 }}
                         transition={{ duration: 0.2 }}
@@ -631,36 +631,36 @@ export default function Home() {
                         <AnimatedText text="Fonctionnalités" />
                       </h2>
                     </motion.div>
-                    <motion.p 
+                    <motion.p
                       className="text-gray-500 text-lg leading-relaxed mb-8"
                       variants={fadeInUp}
                     >
                       Une architecture technique solide pour une plateforme e-learning complète et performante.
                     </motion.p>
 
-                    <motion.div 
+                    <motion.div
                       className="bg-sky-500 rounded-2xl p-6 text-white"
                       variants={scaleIn}
-                    whileHover={{ scale: 1.01 }}
-                  >
-                    <p className="font-semibold text-lg mb-4">
-                      Découvrez le stack technique complet.
-                    </p>
-                    <motion.div whileHover={{ scale: 1.02, x: 3 }} whileTap={{ scale: 0.98 }}>
-                      <Link
-                        href="#tech"
-                        onClick={(e) => { e.preventDefault(); scrollToSection('tech'); }}
-                        className="inline-flex items-center gap-2 bg-white text-sky-500 px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-50 transition-colors"
-                      >
-                        Voir le Tech Stack
-                        <ArrowUpRight className="w-4 h-4" />
-                      </Link>
+                      whileHover={{ scale: 1.01 }}
+                    >
+                      <p className="font-semibold text-lg mb-4">
+                        Découvrez le stack technique complet.
+                      </p>
+                      <motion.div whileHover={{ scale: 1.02, x: 3 }} whileTap={{ scale: 0.98 }}>
+                        <Link
+                          href="#tech"
+                          onClick={(e) => { e.preventDefault(); scrollToSection('tech'); }}
+                          className="inline-flex items-center gap-2 bg-white text-sky-500 px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-50 transition-colors"
+                        >
+                          Voir le Tech Stack
+                          <ArrowUpRight className="w-4 h-4" />
+                        </Link>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
                   </motion.div>
                 </div>
 
-                <motion.div 
+                <motion.div
                   className="space-y-4"
                   initial="hidden"
                   whileInView="visible"
@@ -695,7 +695,7 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-center mb-16"
               >
-                <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4">
                   <div className="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center">
                     <User className="w-5 h-5 text-white" />
                   </div>
@@ -708,7 +708,7 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="max-w-3xl mx-auto"
                 initial="hidden"
                 whileInView="visible"
@@ -717,16 +717,16 @@ export default function Home() {
               >
                 <div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-200 p-6 sm:p-8 md:p-12 shadow-lg">
                   <div className="flex flex-col items-center gap-6 sm:gap-8">
-                    <img 
-                      src="/img/profil.jpeg" 
-                      alt="Said Soidroudine" 
+                    <img
+                      src="/img/profil.jpeg"
+                      alt="Said Soidroudine"
                       className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover shadow-lg border-4 border-white"
                     />
                     <div className="text-center flex-1">
                       <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Said Soidroudine</h3>
                       <p className="text-sky-500 font-semibold mb-4">Développeur Fullstack</p>
                       <p className="text-gray-600 leading-relaxed mb-4 text-sm sm:text-base">
-                        Développeur autodidacte, passionné et animé par une grande détermination. 
+                        Développeur autodidacte, passionné et animé par une grande détermination.
                         Cette détermination me permet de passer d'une expression de besoin vers un projet fini et de livrer en temps et en heure.
                       </p>
                       <p className="text-gray-600 leading-relaxed mb-4 text-sm sm:text-base">
@@ -810,7 +810,7 @@ export default function Home() {
                   variants={fadeInRight}
                   className="lg:sticky lg:top-32"
                 >
-                  <motion.div 
+                  <motion.div
                     className="bg-sky-500 rounded-2xl p-8 text-white"
                     whileHover={{ scale: 1.01 }}
                   >
@@ -857,7 +857,7 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
                 initial="hidden"
                 whileInView="visible"
@@ -870,15 +870,13 @@ export default function Home() {
                     variants={fadeInUp}
                     whileHover={{ scale: 1.02, y: -5 }}
                     transition={{ duration: 0.2 }}
-                    className={`rounded-2xl p-8 flex flex-col ${
-                      stack.highlighted
+                    className={`rounded-2xl p-8 flex flex-col ${stack.highlighted
                         ? 'bg-sky-500 text-white ring-4 ring-sky-200'
                         : 'bg-white border border-gray-200'
-                    }`}
+                      }`}
                   >
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
-                      stack.highlighted ? 'bg-white/20' : 'bg-sky-50'
-                    }`}>
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${stack.highlighted ? 'bg-white/20' : 'bg-sky-50'
+                      }`}>
                       <stack.icon className={`w-7 h-7 ${stack.highlighted ? 'text-white' : 'text-sky-500'}`} />
                     </div>
 
@@ -891,17 +889,16 @@ export default function Home() {
 
                     <ul className="space-y-3 mt-auto">
                       {stack.technologies.map((tech, i) => (
-                        <motion.li 
-                          key={i} 
+                        <motion.li
+                          key={i}
                           className="flex items-center gap-3"
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: false, amount: 0.3 }}
                           transition={{ delay: i * 0.03, duration: 0.2 }}
                         >
-                          <CheckCircle className={`w-5 h-5 flex-shrink-0 ${
-                            stack.highlighted ? 'text-white' : 'text-sky-500'
-                          }`} />
+                          <CheckCircle className={`w-5 h-5 flex-shrink-0 ${stack.highlighted ? 'text-white' : 'text-sky-500'
+                            }`} />
                           <span className={`${stack.highlighted ? 'text-white/90' : 'text-gray-600'}`}>
                             {tech}
                           </span>
@@ -915,7 +912,7 @@ export default function Home() {
           </section>
         </div>
 
-        <motion.footer 
+        <motion.footer
           className="bg-gradient-to-b from-sky-50 to-sky-100 mt-20 rounded-t-3xl relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -923,7 +920,7 @@ export default function Home() {
           transition={{ duration: 0.4 }}
         >
           <div className="section-container px-4 sm:px-6 py-16 relative z-10">
-            <motion.div 
+            <motion.div
               className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 text-center md:text-left"
               initial="hidden"
               whileInView="visible"
@@ -989,7 +986,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="mt-12 pt-8 border-t border-sky-200 text-center"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -1003,7 +1000,7 @@ export default function Home() {
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center pointer-events-none select-none overflow-hidden w-full">
-            <motion.div 
+            <motion.div
               className="flex items-center gap-2 md:gap-4 text-sky-200/40 mb-[-20px] max-w-full overflow-hidden"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
