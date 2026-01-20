@@ -266,10 +266,6 @@ export default function Home() {
       answer: 'Pour les développeurs : clonez le projet depuis mon repository GitHub et testez-le en local. Pour les autres : inscrivez-vous ou cliquez sur "Connexion rapide" pour tester directement.',
     },
     {
-      question: 'Quelles langues peut-on apprendre ?',
-      answer: 'LangProgress est entièrement modulable ! L\'architecture permet d\'enseigner n\'importe quelle langue en ajoutant simplement du contenu : vidéos, leçons, quiz.',
-    },
-    {
       question: 'Qui a développé cette plateforme ?',
       answer: 'Je suis Said Soidroudine, développeur fullstack passionné. N\'hésitez pas à me contacter sur LinkedIn pour échanger sur ce projet ou toute autre question.',
     },
@@ -446,14 +442,14 @@ export default function Home() {
                     variants={fadeInUp}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight"
                   >
-                    <AnimatedText text="Apprenez n'importe quelle" />
+                    <AnimatedText text="Apprenez une langue" />
                     <motion.span
                       className="text-sky-500 block"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.3 }}
                     >
-                      langue facilement
+                      facilement
                     </motion.span>
                   </motion.h1>
 
@@ -469,7 +465,7 @@ export default function Home() {
                     variants={fadeInUp}
                     className="text-base sm:text-lg text-gray-500 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
                   >
-                    LangProgress est une plateforme e-learning automatisée d'apprentissage de langues.
+                    LangProgress est une plateforme e-learning conçue pour faciliter l'apprentissage des élèves.
                     Testez la Démo de LangProgress !
                   </motion.p>
 
@@ -704,7 +700,7 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                  LangProgress est un bac à sable démonstratif pour vous permettre de vous visualiser à travers cette stack technique.
+                  LangProgress est une plateforme conçue pour faciliter l'apprentissage des élèves dans leur parcours linguistique.
                 </p>
               </motion.div>
 
@@ -1046,14 +1042,6 @@ export default function Home() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Pour les développeurs : clonez le projet depuis mon repository GitHub et testez-le en local. Pour les autres : inscrivez-vous ou cliquez sur Connexion rapide pour tester directement."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Quelles langues peut-on apprendre ?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "LangProgress est entièrement modulable ! L'architecture permet d'enseigner n'importe quelle langue en ajoutant simplement du contenu : vidéos, leçons, quiz."
                 }
               },
               {
